@@ -1,4 +1,4 @@
-# example
+# page_view_indicator_example
 
 A new Flutter project.
 

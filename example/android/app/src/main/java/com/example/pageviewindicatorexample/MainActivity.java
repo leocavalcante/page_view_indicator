@@ -1,4 +1,4 @@
-package com.example.example;
+package com.example.pageviewindicatorexample;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;
