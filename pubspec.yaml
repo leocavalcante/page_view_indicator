@@ -1,6 +1,8 @@
 name: page_view_indicator
 version: 0.1.0
 description: Builds indication marks for PageView.
+author: leocavalcante <lc@leocavalcante.com>
+homepage: https://github.com/leocavalcante/page_view_indicator
 
 dependencies:
   flutter:
