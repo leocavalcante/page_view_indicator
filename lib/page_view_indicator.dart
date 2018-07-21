@@ -14,16 +14,18 @@ class PageViewIndicator extends StatefulWidget {
     this.length,
     this.normalBuilder,
     this.highlightedBuilder,
+    this.currentPage = 0,
   }) : super(key: key);
 
   final PageController pageController;
   final int length;
   final IndicatorBuilder normalBuilder;
   final IndicatorBuilder highlightedBuilder;
+  final int currentPage;
 
   @override
   _PageViewIndicatorState createState() => _PageViewIndicatorState(
-      pageController, length, normalBuilder, highlightedBuilder);
+      pageController, length, normalBuilder, highlightedBuilder, currentPage);
 }
 
 class _PageViewIndicatorState extends State<PageViewIndicator>
@@ -33,13 +35,18 @@ class _PageViewIndicatorState extends State<PageViewIndicator>
     this.length,
     this.normalBuilder,
     this.highlightedBuilder,
+    this.currentPage,
   ) {
     pageController.addListener(() {
       final currPage = pageController.page.toInt();
 
       if (currPage != _prevPage) {
-        _indicators[_prevPage].animationController.reverse();
-        _indicators[currPage].animationController.forward();
+        _indicators[_prevPage].normalController.forward();
+        _indicators[_prevPage].highlightedController.reverse();
+
+        _indicators[currPage].normalController.reverse();
+        _indicators[currPage].highlightedController.forward();
+
         _prevPage = currPage;
       }
     });
@@ -48,6 +55,7 @@ class _PageViewIndicatorState extends State<PageViewIndicator>
   final int length;
   final IndicatorBuilder normalBuilder;
   final IndicatorBuilder highlightedBuilder;
+  final int currentPage;
 
   List<Indicator> _indicators;
 
@@ -60,10 +68,17 @@ class _PageViewIndicatorState extends State<PageViewIndicator>
     _indicators = List.generate(
         length,
         (index) => Indicator(
-                animationController: AnimationController(
+            normalController: AnimationController(
               vsync: this,
-              duration: Duration(milliseconds: 100),
+              duration: Duration(microseconds: 200),
+            )..forward(),
+            highlightedController: AnimationController(
+              vsync: this,
+              duration: Duration(milliseconds: 200),
             )));
+
+    _indicators[currentPage].normalController.reverse();
+    _indicators[currentPage].highlightedController.forward();
   }
 
   @override
@@ -82,8 +97,8 @@ class _PageViewIndicatorState extends State<PageViewIndicator>
       child: Stack(
         alignment: AlignmentDirectional.center,
         children: [
-          normalBuilder(indicator.animationController),
-          highlightedBuilder(indicator.animationController),
+          normalBuilder(indicator.normalController),
+          highlightedBuilder(indicator.highlightedController),
         ],
       ),
     );

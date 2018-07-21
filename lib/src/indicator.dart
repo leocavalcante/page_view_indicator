@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 
 class Indicator {
   Indicator({
-    this.animationController,
+    this.normalController,
+    this.highlightedController,
     this.widget,
     this.builder,
   });
 
-  final AnimationController animationController;
+  final AnimationController normalController;
+  final AnimationController highlightedController;
   final Widget widget;
   final WidgetBuilder builder;
 }
