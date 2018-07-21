@@ -29,7 +29,7 @@ return PageViewIndicator(
       ),
 );
 ```
-[![Example 1](example1.gif)]
+![Example 1](example1.gif)
 
 ### Custom animations
 ```dart
@@ -52,7 +52,7 @@ return PageViewIndicator(
       ),
 );
 ```
-[![Example 2](example2.gif)]
+![Example 2](example2.gif)
 
 ### Custom icons
 It's not just about dots! 
@@ -82,4 +82,4 @@ return PageViewIndicator(
       ),
 );
 ```
-[![Example 3](example3.gif)]
+![Example 3](example3.gif)
