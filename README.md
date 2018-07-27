@@ -11,7 +11,7 @@ import 'package:page_view_indicator/page_view_indicator.dart';
 ### Default Material behavior
 ```dart
 return PageViewIndicator(
-  pageController: pageController,
+  pageIndexNotifier: pageIndexNotifier,
   length: length,
   normalBuilder: (animationController) => Circle(
         size: 8.0,
@@ -31,10 +31,12 @@ return PageViewIndicator(
 ```
 ![Example 1](example1.gif)
 
+---
+
 ### Custom animations
 ```dart
 return PageViewIndicator(
-  pageController: pageController,
+  pageIndexNotifier: pageIndexNotifier,
   length: length,
   normalBuilder: (animationController) => Circle(
         size: 8.0,
@@ -54,11 +56,13 @@ return PageViewIndicator(
 ```
 ![Example 2](example2.gif)
 
+---
+
 ### Custom icons
-It's not just about dots! 
+It's not just about dots!
 ```dart
 return PageViewIndicator(
-  pageController: pageController,
+  pageIndexNotifier: pageIndexNotifier,
   length: length,
   normalBuilder: (animationController) => ScaleTransition(
         scale: CurvedAnimation(
