@@ -3,7 +3,7 @@ import 'package:page_view_indicator/page_view_indicator.dart';
 
 class App extends StatelessWidget {
   static const length = 3;
-  final pageController = PageController();
+  final pageIndexNotifier = ValueNotifier<int>(0);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class App extends StatelessWidget {
           alignment: FractionalOffset.bottomCenter,
           children: <Widget>[
             PageView.builder(
-              controller: pageController,
+              onPageChanged: (index) => pageIndexNotifier.value = index,
               itemCount: length,
               itemBuilder: (context, index) {
                 return Container(
@@ -30,7 +30,7 @@ class App extends StatelessWidget {
 
   PageViewIndicator _buildExample1() {
     return PageViewIndicator(
-      pageController: pageController,
+      pageIndexNotifier: pageIndexNotifier,
       length: length,
       normalBuilder: (animationController) => Circle(
             size: 8.0,
@@ -51,7 +51,7 @@ class App extends StatelessWidget {
 
   PageViewIndicator _buildExample2() {
     return PageViewIndicator(
-      pageController: pageController,
+      pageIndexNotifier: pageIndexNotifier,
       length: length,
       normalBuilder: (animationController) => Circle(
             size: 8.0,
@@ -72,7 +72,7 @@ class App extends StatelessWidget {
 
   PageViewIndicator _buildExample3() {
     return PageViewIndicator(
-      pageController: pageController,
+      pageIndexNotifier: pageIndexNotifier,
       length: length,
       normalBuilder: (animationController) => ScaleTransition(
             scale: CurvedAnimation(
