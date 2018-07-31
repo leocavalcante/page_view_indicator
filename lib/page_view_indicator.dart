@@ -67,6 +67,12 @@ class _PageViewIndicatorState extends State<PageViewIndicator>
   }
 
   @override
+  void dispose() {
+    _indicators.forEach((indicator) => indicator.dispose());
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,

@@ -12,4 +12,9 @@ class Indicator {
   final AnimationController highlightedController;
   final Widget widget;
   final WidgetBuilder builder;
+
+  void dispose() {
+    normalController.dispose();
+    highlightedController.dispose();
+  }
 }
