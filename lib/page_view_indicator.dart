@@ -1,3 +1,4 @@
+/// Builds indication marks for PageView from any Widget and/or Animation.
 library page_view_indicator;
 
 import 'package:flutter/material.dart';
@@ -7,7 +8,14 @@ export 'src/circle.dart';
 
 typedef Widget IndicatorBuilder(AnimationController controller);
 
+/// The Indicator Widget, you would likely put it next to your PageView.
 class PageViewIndicator extends StatefulWidget {
+  /// [pageIndexNotifier] is how we can properly handle page changes.
+  /// [length] is how much pages there is in the [PageView].
+  /// [normalBuilder] is how we should build the Indicator at its normal state.
+  /// [highlightedBuilder] is how we should build the Indicator at its highlighted state.
+  /// [currentPage] gives you the ability to star the Indicator at a given index.
+  /// [indicatorPadding] space around each Indicator.
   PageViewIndicator({
     Key key,
     this.pageIndexNotifier,
@@ -23,7 +31,7 @@ class PageViewIndicator extends StatefulWidget {
   final IndicatorBuilder normalBuilder;
   final IndicatorBuilder highlightedBuilder;
   final int currentPage;
-  final indicatorPadding;
+  final EdgeInsets indicatorPadding;
 
   @override
   _PageViewIndicatorState createState() => _PageViewIndicatorState();

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Mediates indicator building and animation.
 class Indicator {
   Indicator({
     this.normalController,

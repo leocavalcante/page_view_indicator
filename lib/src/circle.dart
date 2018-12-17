@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Draws a little dot as indicator.
 class Circle extends StatelessWidget {
   Circle({Key key, this.color, this.size}) : super(key: key);
 
