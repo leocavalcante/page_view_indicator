@@ -18,12 +18,13 @@ class PageViewIndicator extends StatefulWidget {
   /// [indicatorPadding] space around each Indicator.
   PageViewIndicator({
     Key key,
-    this.pageIndexNotifier,
-    this.length,
-    this.normalBuilder,
-    this.highlightedBuilder,
+    @required this.pageIndexNotifier,
+    @required this.length,
+    @required this.normalBuilder,
+    @required this.highlightedBuilder,
     this.currentPage = 0,
     this.indicatorPadding = const EdgeInsets.all(8.0),
+    this.alignment = MainAxisAlignment.center,
   }) : super(key: key);
 
   final ValueNotifier<int> pageIndexNotifier;
@@ -32,6 +33,7 @@ class PageViewIndicator extends StatefulWidget {
   final IndicatorBuilder highlightedBuilder;
   final int currentPage;
   final EdgeInsets indicatorPadding;
+  final MainAxisAlignment alignment;
 
   @override
   _PageViewIndicatorState createState() => _PageViewIndicatorState();
@@ -85,7 +87,7 @@ class _PageViewIndicatorState extends State<PageViewIndicator>
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: widget.alignment,
       children: _indicators
           .map<Widget>((indicator) => _buildIndicator(indicator))
           .toList(),

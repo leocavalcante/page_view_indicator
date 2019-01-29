@@ -1,5 +1,5 @@
 name: page_view_indicator
-version: 1.0.0
+version: 1.0.1
 description: Builds indication marks for PageView from any Widget and/or Animation.
 author: leocavalcante <lc@leocavalcante.com>
 homepage: https://github.com/leocavalcante/page_view_indicator
