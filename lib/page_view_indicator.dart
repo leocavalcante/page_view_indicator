@@ -62,6 +62,7 @@ class _PageViewIndicatorState extends State<PageViewIndicator>
 
     _indicators[widget.currentPage].normalController.reverse();
     _indicators[widget.currentPage].highlightedController.forward();
+
     _addIndicatorsListener();
   }
 
@@ -94,6 +95,7 @@ class _PageViewIndicatorState extends State<PageViewIndicator>
 
   @override
   Widget build(BuildContext context) {
+    _addIndicatorsListener();
     return Row(
       mainAxisAlignment: widget.alignment,
       children: _indicators
