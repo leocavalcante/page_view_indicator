@@ -62,6 +62,13 @@ class _PageViewIndicatorState extends State<PageViewIndicator>
 
     _indicators[widget.currentPage].normalController.reverse();
     _indicators[widget.currentPage].highlightedController.forward();
+
+    _addIndicatorsListener();
+  }
+
+  @override
+  didUpdateWidget(Widget oldWidget) {
+    _addIndicatorsListener();
   }
 
   _addIndicatorsListener() {
