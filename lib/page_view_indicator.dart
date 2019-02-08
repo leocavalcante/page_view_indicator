@@ -95,7 +95,6 @@ class _PageViewIndicatorState extends State<PageViewIndicator>
 
   @override
   Widget build(BuildContext context) {
-    _addIndicatorsListener();
     return Row(
       mainAxisAlignment: widget.alignment,
       children: _indicators
