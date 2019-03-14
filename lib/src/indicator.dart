@@ -7,12 +7,14 @@ class Indicator {
     this.highlightedController,
     this.widget,
     this.builder,
+    this.index,
   });
 
   final AnimationController normalController;
   final AnimationController highlightedController;
   final Widget widget;
   final WidgetBuilder builder;
+  final int index;
 
   void dispose() {
     normalController.dispose();
