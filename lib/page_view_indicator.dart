@@ -6,7 +6,7 @@ import 'package:page_view_indicator/src/indicator.dart';
 
 export 'src/circle.dart';
 
-typedef Widget IndicatorBuilder(AnimationController controller);
+typedef Widget IndicatorBuilder(AnimationController controller, int index);
 
 /// The Indicator Widget, you would likely put it next to your PageView.
 class PageViewIndicator extends StatefulWidget {
@@ -51,6 +51,7 @@ class _PageViewIndicatorState extends State<PageViewIndicator>
     _indicators = List.generate(
         widget.length,
         (index) => Indicator(
+            index: index,
             normalController: AnimationController(
               vsync: this,
               duration: Duration(microseconds: 200),
@@ -67,8 +68,9 @@ class _PageViewIndicatorState extends State<PageViewIndicator>
   }
 
   @override
-  didUpdateWidget(Widget oldWidget) {
+  void didUpdateWidget(Widget oldWidget) {
     _addIndicatorsListener();
+    super.didUpdateWidget(oldWidget);
   }
 
   _addIndicatorsListener() {
@@ -109,8 +111,9 @@ class _PageViewIndicatorState extends State<PageViewIndicator>
       child: Stack(
         alignment: AlignmentDirectional.center,
         children: [
-          widget.normalBuilder(indicator.normalController),
-          widget.highlightedBuilder(indicator.highlightedController),
+          widget.normalBuilder(indicator.normalController, indicator.index),
+          widget.highlightedBuilder(
+              indicator.highlightedController, indicator.index),
         ],
       ),
     );

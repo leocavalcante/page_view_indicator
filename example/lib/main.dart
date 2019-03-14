@@ -21,7 +21,7 @@ class App extends StatelessWidget {
                 );
               },
             ),
-            _buildExample3()
+            _buildExample1()
           ],
         ),
       ),
@@ -32,18 +32,18 @@ class App extends StatelessWidget {
     return PageViewIndicator(
       pageIndexNotifier: pageIndexNotifier,
       length: length,
-      normalBuilder: (animationController) => Circle(
+      normalBuilder: (animationController, index) => Circle(
             size: 8.0,
             color: Colors.black87,
           ),
-      highlightedBuilder: (animationController) => ScaleTransition(
+      highlightedBuilder: (animationController, index) => ScaleTransition(
             scale: CurvedAnimation(
               parent: animationController,
               curve: Curves.ease,
             ),
             child: Circle(
               size: 12.0,
-              color: Colors.black45,
+              color: Colors.accents.elementAt((index + 3) * 3),
             ),
           ),
     );
@@ -53,11 +53,11 @@ class App extends StatelessWidget {
     return PageViewIndicator(
       pageIndexNotifier: pageIndexNotifier,
       length: length,
-      normalBuilder: (animationController) => Circle(
+      normalBuilder: (animationController, index) => Circle(
             size: 8.0,
             color: Colors.black87,
           ),
-      highlightedBuilder: (animationController) => ScaleTransition(
+      highlightedBuilder: (animationController, index) => ScaleTransition(
             scale: CurvedAnimation(
               parent: animationController,
               curve: Curves.ease,
@@ -74,25 +74,19 @@ class App extends StatelessWidget {
     return PageViewIndicator(
       pageIndexNotifier: pageIndexNotifier,
       length: length,
-      normalBuilder: (animationController) => ScaleTransition(
+      normalBuilder: (animationController, index) => ScaleTransition(
             scale: CurvedAnimation(
               parent: animationController,
               curve: Curves.ease,
             ),
-            child: Icon(
-              Icons.favorite,
-              color: Colors.black87,
-            ),
+            child: Icon(Icons.favorite, color: Colors.black87),
           ),
-      highlightedBuilder: (animationController) => ScaleTransition(
+      highlightedBuilder: (animationController, index) => ScaleTransition(
             scale: CurvedAnimation(
               parent: animationController,
               curve: Curves.ease,
             ),
-            child: Icon(
-              Icons.star,
-              color: Colors.white,
-            ),
+            child: Icon(Icons.star, color: Colors.white),
           ),
     );
   }
