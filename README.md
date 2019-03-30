@@ -87,3 +87,17 @@ return PageViewIndicator(
 );
 ```
 ![Example 3](example3.gif)
+
+### Changing the space bettwen the indicators
+
+You can change the padding around the indicators using the `indicatorPadding` property:
+
+```dart
+return PageViewIndicator(
+  pageIndexNotifier: pageIndexNotifier,
+  length: length,
+  indicatorPadding: const EdgeInsets.all(4.0)
+  ...
+```
+
+Default is `const EdgeInsets.all(8.0)`.
