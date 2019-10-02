@@ -3,6 +3,7 @@ library page_view_indicator;
 
 import 'package:flutter/material.dart';
 import 'package:page_view_indicator/src/indicator.dart';
+import 'dart:math';
 
 export 'src/circle.dart';
 
@@ -42,12 +43,13 @@ class PageViewIndicator extends StatefulWidget {
 class _PageViewIndicatorState extends State<PageViewIndicator>
     with TickerProviderStateMixin {
   List<Indicator> _indicators;
-  int _prevPage = 0;
+  int _prevPage;
 
   @override
   void initState() {
     super.initState();
-
+    _prevPage = max(0, widget.currentPage);
+    
     _indicators = List.generate(
         widget.length,
         (index) => Indicator(
