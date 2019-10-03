@@ -1,9 +1,10 @@
 /// Builds indication marks for PageView from any Widget and/or Animation.
 library page_view_indicator;
 
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:page_view_indicator/src/indicator.dart';
-import 'dart:math';
 
 export 'src/circle.dart';
 
@@ -45,11 +46,29 @@ class _PageViewIndicatorState extends State<PageViewIndicator>
   List<Indicator> _indicators;
   int _prevPage;
 
+  void _indicatorsListener() {
+    final currPage = widget.pageIndexNotifier.value;
+
+    if (currPage != _prevPage) {
+      _indicators[_prevPage].normalController.forward();
+      _indicators[_prevPage].highlightedController.reverse();
+
+      _indicators[currPage].normalController.reverse();
+      _indicators[currPage].highlightedController.forward();
+
+      _prevPage = currPage;
+    }
+  }
+
+  void _addIndicatorsListener() {
+    widget.pageIndexNotifier.addListener(_indicatorsListener);
+  }
+
   @override
   void initState() {
     super.initState();
     _prevPage = max(0, widget.currentPage);
-    
+
     _indicators = List.generate(
         widget.length,
         (index) => Indicator(
@@ -71,29 +90,14 @@ class _PageViewIndicatorState extends State<PageViewIndicator>
 
   @override
   void didUpdateWidget(Widget oldWidget) {
-    _addIndicatorsListener();
     super.didUpdateWidget(oldWidget);
-  }
-
-  _addIndicatorsListener() {
-    widget.pageIndexNotifier.addListener(() {
-      final currPage = widget.pageIndexNotifier.value;
-
-      if (currPage != _prevPage) {
-        _indicators[_prevPage].normalController.forward();
-        _indicators[_prevPage].highlightedController.reverse();
-
-        _indicators[currPage].normalController.reverse();
-        _indicators[currPage].highlightedController.forward();
-
-        _prevPage = currPage;
-      }
-    });
+    _addIndicatorsListener();
   }
 
   @override
   void dispose() {
     _indicators.forEach((indicator) => indicator.dispose());
+    widget.pageIndexNotifier.removeListener(_indicatorsListener);
     super.dispose();
   }
 

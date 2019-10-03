@@ -1,3 +1,6 @@
+# 2.0.2
+* Remove indicators listener on dispose
+
 # 2.0.1
 * Fix indicator unmark issue when currentPage is different than 0
 
