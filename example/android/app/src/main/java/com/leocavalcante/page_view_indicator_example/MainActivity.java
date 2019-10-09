@@ -1,4 +1,4 @@
-package com.example.pageviewindicatorexample;
+package com.leocavalcante.page_view_indicator_example;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;

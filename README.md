@@ -13,11 +13,11 @@ import 'package:page_view_indicator/page_view_indicator.dart';
 return PageViewIndicator(
   pageIndexNotifier: pageIndexNotifier,
   length: length,
-  normalBuilder: (animationController) => Circle(
+  normalBuilder: (animationController, index) => Circle(
         size: 8.0,
         color: Colors.black87,
       ),
-  highlightedBuilder: (animationController) => ScaleTransition(
+  highlightedBuilder: (animationController, index) => ScaleTransition(
         scale: CurvedAnimation(
           parent: animationController,
           curve: Curves.ease,
@@ -38,11 +38,11 @@ return PageViewIndicator(
 return PageViewIndicator(
   pageIndexNotifier: pageIndexNotifier,
   length: length,
-  normalBuilder: (animationController) => Circle(
+  normalBuilder: (animationController, index) => Circle(
         size: 8.0,
         color: Colors.black87,
       ),
-  highlightedBuilder: (animationController) => ScaleTransition(
+  highlightedBuilder: (animationController, index) => ScaleTransition(
         scale: CurvedAnimation(
           parent: animationController,
           curve: Curves.ease,
@@ -64,7 +64,7 @@ It's not just about dots!
 return PageViewIndicator(
   pageIndexNotifier: pageIndexNotifier,
   length: length,
-  normalBuilder: (animationController) => ScaleTransition(
+  normalBuilder: (animationController, index) => ScaleTransition(
         scale: CurvedAnimation(
           parent: animationController,
           curve: Curves.ease,
@@ -74,7 +74,7 @@ return PageViewIndicator(
           color: Colors.black87,
         ),
       ),
-  highlightedBuilder: (animationController) => ScaleTransition(
+  highlightedBuilder: (animationController, index) => ScaleTransition(
         scale: CurvedAnimation(
           parent: animationController,
           curve: Curves.ease,
@@ -87,3 +87,17 @@ return PageViewIndicator(
 );
 ```
 ![Example 3](example3.gif)
+
+### Changing the space bettwen the indicators
+
+You can change the padding around the indicators using the `indicatorPadding` property:
+
+```dart
+return PageViewIndicator(
+  pageIndexNotifier: pageIndexNotifier,
+  length: length,
+  indicatorPadding: const EdgeInsets.all(4.0)
+  ...
+```
+
+Default is `const EdgeInsets.all(8.0)`.
