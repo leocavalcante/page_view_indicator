@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 /// Draws a little dot as indicator.
 class Circle extends StatelessWidget {
+  /// [color] Determine the color of this circle.
+  /// [size] Determine the circumference.
   Circle({Key key, this.color, this.size}) : super(key: key);
 
   final Color color;
