@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 
 /// Mediates indicator building and animation.
 class Indicator {
+  /// [normalController] Animation controller when state changes to normal
+  /// [highlightedController] Animation controller when state changes to selected
+  /// [widget] Indicator widget
+  /// [builder] Widgetbuilder object
+  /// [index] Determine index on the stack
   Indicator({
     this.normalController,
     this.highlightedController,
