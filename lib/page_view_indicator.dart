@@ -61,6 +61,7 @@ class _PageViewIndicatorState extends State<PageViewIndicator>
   }
 
   void _addIndicatorsListener() {
+    widget.pageIndexNotifier.removeListener(_indicatorsListener);
     widget.pageIndexNotifier.addListener(_indicatorsListener);
   }
 
