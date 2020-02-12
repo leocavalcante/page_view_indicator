@@ -41,10 +41,25 @@ class PageViewIndicator extends StatefulWidget {
   _PageViewIndicatorState createState() => _PageViewIndicatorState();
 }
 
-class _PageViewIndicatorState extends State<PageViewIndicator>
-    with TickerProviderStateMixin {
+class _PageViewIndicatorState extends State<PageViewIndicator> with TickerProviderStateMixin {
   List<Indicator> _indicators;
   int _prevPage;
+
+  void _generateIndicators() {
+    _indicators?.forEach((indicator) => indicator.dispose());
+    _indicators = List.generate(
+        widget.length,
+        (index) => Indicator(
+            index: index,
+            normalController: AnimationController(
+              vsync: this,
+              duration: Duration(microseconds: 200),
+            )..forward(),
+            highlightedController: AnimationController(
+              vsync: this,
+              duration: Duration(milliseconds: 200),
+            )));
+  }
 
   void _indicatorsListener() {
     final currPage = widget.pageIndexNotifier.value;
@@ -70,18 +85,7 @@ class _PageViewIndicatorState extends State<PageViewIndicator>
     super.initState();
     _prevPage = max(0, widget.currentPage);
 
-    _indicators = List.generate(
-        widget.length,
-        (index) => Indicator(
-            index: index,
-            normalController: AnimationController(
-              vsync: this,
-              duration: Duration(microseconds: 200),
-            )..forward(),
-            highlightedController: AnimationController(
-              vsync: this,
-              duration: Duration(milliseconds: 200),
-            )));
+    _generateIndicators();
 
     _indicators[widget.currentPage].normalController.reverse();
     _indicators[widget.currentPage].highlightedController.forward();
@@ -90,8 +94,20 @@ class _PageViewIndicatorState extends State<PageViewIndicator>
   }
 
   @override
-  void didUpdateWidget(Widget oldWidget) {
+  void didUpdateWidget(PageViewIndicator oldWidget) {
+    if (oldWidget.length != widget.length) {
+      final currPage = min(widget.pageIndexNotifier.value, widget.length - 1);
+
+      _generateIndicators();
+
+      _indicators[currPage].normalController.reverse();
+      _indicators[currPage].highlightedController.forward();
+
+      _prevPage = currPage;
+    }
+
     super.didUpdateWidget(oldWidget);
+
     _addIndicatorsListener();
   }
 
@@ -106,9 +122,7 @@ class _PageViewIndicatorState extends State<PageViewIndicator>
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: widget.alignment,
-      children: _indicators
-          .map<Widget>((indicator) => _buildIndicator(indicator))
-          .toList(),
+      children: _indicators.map<Widget>((indicator) => _buildIndicator(indicator)).toList(),
     );
   }
 
@@ -119,8 +133,7 @@ class _PageViewIndicatorState extends State<PageViewIndicator>
         alignment: AlignmentDirectional.center,
         children: [
           widget.normalBuilder(indicator.normalController, indicator.index),
-          widget.highlightedBuilder(
-              indicator.highlightedController, indicator.index),
+          widget.highlightedBuilder(indicator.highlightedController, indicator.index),
         ],
       ),
     );
