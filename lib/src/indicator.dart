@@ -8,17 +8,17 @@ class Indicator {
   /// [builder] Widgetbuilder object
   /// [index] Determine index on the stack
   Indicator({
-    this.normalController,
-    this.highlightedController,
+    required this.normalController,
+    required this.highlightedController,
     this.widget,
     this.builder,
-    this.index,
+    required this.index,
   });
 
   final AnimationController normalController;
   final AnimationController highlightedController;
-  final Widget widget;
-  final WidgetBuilder builder;
+  final Widget? widget;
+  final WidgetBuilder? builder;
   final int index;
 
   void dispose() {

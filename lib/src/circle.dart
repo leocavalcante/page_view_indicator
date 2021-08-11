@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class Circle extends StatelessWidget {
   /// [color] Determine the color of this circle.
   /// [size] Determine the circumference.
-  Circle({Key key, this.color, this.size}) : super(key: key);
+  Circle({Key? key, required this.color, required this.size}) : super(key: key);
 
   final Color color;
   final double size;
