@@ -1,10 +1,10 @@
 /// Builds indication marks for PageView from any Widget and/or Animation.
-library page_view_indicator;
+library page_view_indicator_ns;
 
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:page_view_indicator/src/indicator.dart';
+import 'package:page_view_indicator_ns/src/indicator.dart';
 
 export 'src/circle.dart';
 
@@ -19,11 +19,11 @@ class PageViewIndicator extends StatefulWidget {
   /// [currentPage] gives you the ability to star the Indicator at a given index.
   /// [indicatorPadding] space around each Indicator.
   PageViewIndicator({
-    Key key,
-    @required this.pageIndexNotifier,
-    @required this.length,
-    @required this.normalBuilder,
-    @required this.highlightedBuilder,
+    Key? key,
+    required this.pageIndexNotifier,
+    required this.length,
+    required this.normalBuilder,
+    required this.highlightedBuilder,
     this.currentPage = 0,
     this.indicatorPadding = const EdgeInsets.all(8.0),
     this.alignment = MainAxisAlignment.center,
@@ -41,12 +41,13 @@ class PageViewIndicator extends StatefulWidget {
   _PageViewIndicatorState createState() => _PageViewIndicatorState();
 }
 
-class _PageViewIndicatorState extends State<PageViewIndicator> with TickerProviderStateMixin {
-  List<Indicator> _indicators;
-  int _prevPage;
+class _PageViewIndicatorState extends State<PageViewIndicator>
+    with TickerProviderStateMixin {
+  late List<Indicator> _indicators;
+  late int _prevPage;
 
   void _generateIndicators() {
-    _indicators?.forEach((indicator) => indicator.dispose());
+    _indicators.forEach((indicator) => indicator.dispose());
     _indicators = List.generate(
         widget.length,
         (index) => Indicator(
@@ -122,7 +123,9 @@ class _PageViewIndicatorState extends State<PageViewIndicator> with TickerProvid
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: widget.alignment,
-      children: _indicators.map<Widget>((indicator) => _buildIndicator(indicator)).toList(),
+      children: _indicators
+          .map<Widget>((indicator) => _buildIndicator(indicator))
+          .toList(),
     );
   }
 
@@ -133,7 +136,8 @@ class _PageViewIndicatorState extends State<PageViewIndicator> with TickerProvid
         alignment: AlignmentDirectional.center,
         children: [
           widget.normalBuilder(indicator.normalController, indicator.index),
-          widget.highlightedBuilder(indicator.highlightedController, indicator.index),
+          widget.highlightedBuilder(
+              indicator.highlightedController, indicator.index),
         ],
       ),
     );
