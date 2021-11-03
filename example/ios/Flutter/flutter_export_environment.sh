@@ -2,7 +2,6 @@
 # This is a generated file; do not edit or check into version control.
 export "FLUTTER_ROOT=/home/rodrigo/Documents/Environment/flutter_linux_2.0.4-stable/flutter"
 export "FLUTTER_APPLICATION_PATH=/home/rodrigo/Documents/Dev/projects/page_view_indicator.git/example"
-export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_TARGET=lib/main.dart"
 export "FLUTTER_BUILD_DIR=build"
 export "SYMROOT=${SOURCE_ROOT}/../build/ios"

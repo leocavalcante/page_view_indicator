@@ -41,7 +41,8 @@ class PageViewIndicator extends StatefulWidget {
   _PageViewIndicatorState createState() => _PageViewIndicatorState();
 }
 
-class _PageViewIndicatorState extends State<PageViewIndicator> with TickerProviderStateMixin {
+class _PageViewIndicatorState extends State<PageViewIndicator>
+    with TickerProviderStateMixin {
   late List<Indicator> _indicators;
   late int _prevPage;
 
@@ -122,7 +123,9 @@ class _PageViewIndicatorState extends State<PageViewIndicator> with TickerProvid
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: widget.alignment,
-      children: _indicators.map<Widget>((indicator) => _buildIndicator(indicator)).toList(),
+      children: _indicators
+          .map<Widget>((indicator) => _buildIndicator(indicator))
+          .toList(),
     );
   }
 
@@ -133,7 +136,8 @@ class _PageViewIndicatorState extends State<PageViewIndicator> with TickerProvid
         alignment: AlignmentDirectional.center,
         children: [
           widget.normalBuilder(indicator.normalController, indicator.index),
-          widget.highlightedBuilder(indicator.highlightedController, indicator.index),
+          widget.highlightedBuilder(
+              indicator.highlightedController, indicator.index),
         ],
       ),
     );

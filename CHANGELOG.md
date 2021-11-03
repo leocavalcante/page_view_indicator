@@ -1,24 +1,7 @@
-# 2.0.3
+# 1.0.0+1
 
-- Avoid listener duplication
-
-# 2.0.2
-
-- Remove indicators listener on dispose
-
-# 2.0.1
-
-- Fix indicator unmark issue when currentPage is different than 0
-
-# 2.0.0
-
-- Passes the indicator index on the builders
-- Fixes some bugs
+- Formatting files
 
 # 1.0.0
 
-- Stable and documented API.
-
-# 0.3.1
-
-- Exposed internal padding in public API
+- Fork of https://pub.dev/packages/page_view_indicator migrated to Null Safety

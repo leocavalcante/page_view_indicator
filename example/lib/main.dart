@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:page_view_indicator_ns/page_view_indicator.dart';
+import 'package:page_view_indicator_ns/page_view_indicator_ns.dart';
 
 class App extends StatelessWidget {
   static const length = 3;
@@ -33,19 +33,19 @@ class App extends StatelessWidget {
       pageIndexNotifier: pageIndexNotifier,
       length: length,
       normalBuilder: (animationController, index) => Circle(
-            size: 8.0,
-            color: Colors.black87,
-          ),
+        size: 8.0,
+        color: Colors.black87,
+      ),
       highlightedBuilder: (animationController, index) => ScaleTransition(
-            scale: CurvedAnimation(
-              parent: animationController,
-              curve: Curves.ease,
-            ),
-            child: Circle(
-              size: 12.0,
-              color: Colors.accents.elementAt((index + 3) * 3),
-            ),
-          ),
+        scale: CurvedAnimation(
+          parent: animationController,
+          curve: Curves.ease,
+        ),
+        child: Circle(
+          size: 12.0,
+          color: Colors.accents.elementAt((index + 3) * 3),
+        ),
+      ),
     );
   }
 }

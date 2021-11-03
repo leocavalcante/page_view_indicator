@@ -1,6 +1,9 @@
 # PageViewIndicator [![Pub Package](https://img.shields.io/pub/v/page_view_indicator.svg)](https://pub.dartlang.org/packages/page_view_indicator)
 Builds indication marks for PageView.
 
+### Null Safety
+This is a fork of the https://pub.dev/packages/page_view_indicator. The only change is that this package uses Null Safety
+
 ## Import
 ```dart
 import 'package:page_view_indicator/page_view_indicator.dart';
